@@ -70,6 +70,7 @@ static InterpretResult run() {
   }
 
 #undef READ_CONSTANT
+#undef BINARY_OP
 #undef READ_BYTE
 }
 
