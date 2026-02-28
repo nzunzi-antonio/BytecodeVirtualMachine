@@ -18,6 +18,10 @@ void initScanner(const char* source) {
   scanner.line = 1;
 }
 
+static bool isDigit(char c) {
+  return c >= '0' && c <= '9';
+}
+
 static bool isAtEnd() {
   return *scanner.current == '\0';
 }
@@ -108,6 +112,7 @@ Token scanToken() {
   if (isAtEnd()) return makeToken(TOKEN_EOF);
 
   char c = advance();
+  if (isDigit(c)) return number();
 
   switch (c) {
     case '(': return makeToken(TOKEN_LEFT_PAREN);
