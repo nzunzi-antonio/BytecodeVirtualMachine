@@ -24,6 +24,11 @@ static void repl() {
 static char* readFile(const char* path) {
   FILE* file = fopen(path, "rb");
 
+  if (file == NULL) {
+    fprintf(stderr, "Could not open file \"%s\".\n", path);
+    exit(74);
+  }
+
   fseek(file, 0L, SEEK_END);
   size_t fileSize = ftell(file);
   rewind(file);
