@@ -11,6 +11,21 @@ typedef struct {
 
 Parser parser;
 
+static void errorAt(Token* token, const char* message) {
+  fprintf(stderr, "[line %d] Error", token->line);
+
+  if (token->type == TOKEN_EOF) {
+    fprintf(stderr, " at end");
+  } else if (token->type == TOKEN_ERROR) {
+    // Nothing.
+  } else {
+    fprintf(stderr, " at '%.*s'", token->length, token->start);
+  }
+
+  fprintf(stderr, ": %s\n", message);
+  parser.hadError = true;
+}
+
 static void error(const char* message) {
   errorAt(&parser.previous, message);
 }
