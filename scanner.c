@@ -18,6 +18,12 @@ void initScanner(const char* source) {
   scanner.line = 1;
 }
 
+static bool isAlpha(char c) {
+  return (c >= 'a' && c <= 'z') ||
+         (c >= 'A' && c <= 'Z') ||
+          c == '_';
+}
+
 static bool isDigit(char c) {
   return c >= '0' && c <= '9';
 }
@@ -126,6 +132,7 @@ Token scanToken() {
   if (isAtEnd()) return makeToken(TOKEN_EOF);
 
   char c = advance();
+  if (isAlpha(c)) return identifier();
   if (isDigit(c)) return number();
 
   switch (c) {
