@@ -123,7 +123,7 @@ static void unary() {
   TokenType operatorType = parser.previous.type;
 
   // Compile the operand.
-  expression();
+  parsePrecedence(PREC_UNARY);
 
   // Emit the operator instruction.
   switch (operatorType) {
@@ -137,7 +137,7 @@ static void parsePrecedence(Precedence precedence) {
 }
 
 static void expression() {
-  // What goes here?
+  parsePrecedence(PREC_ASSIGNMENT);
 }
 
 bool compile(const char* source, Chunk* chunk) {
