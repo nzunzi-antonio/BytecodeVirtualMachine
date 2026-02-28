@@ -4,6 +4,13 @@
 #include "compiler.h"
 #include "scanner.h"
 
+typedef struct {
+  Token current;
+  Token previous;
+} Parser;
+
+Parser parser;
+
 static void advance() {
   parser.previous = parser.current;
 
