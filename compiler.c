@@ -81,6 +81,15 @@ static void endCompiler() {
   emitReturn();
 }
 
+static void number() {
+  double value = strtod(parser.previous.start, NULL);
+  emitConstant(value);
+}
+
+static void expression() {
+  // What goes here?
+}
+
 bool compile(const char* source, Chunk* chunk) {
   initScanner(source);
   compilingChunk = chunk;
